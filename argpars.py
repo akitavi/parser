@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 import requests
@@ -13,7 +14,7 @@ parser.add_argument('-H', '--headers', action="store_true",
                     help='Print only headers')
 parser.add_argument('-c', '--cookies', action="store_true",
                     help='Print only cookies')
-parser.add_argument('-s', '--speed', action="store_true",
+parser.add_argument('-t', '--time', action="store_true",
                     help='Print page load time ')
 parser.add_argument('-u', '--url', nargs='*', type=str,
                     required=True, help='This url will be pars')
@@ -96,7 +97,7 @@ elif res.cookies:
         except requests.exceptions.ConnectionError as e:
             print('Connection error to: ' + i + '\n ********* \n')
 
-elif res.speed:
+elif res.time:
     for i in res.url:
         print('URL: ' + str(i))
         try:
@@ -104,7 +105,7 @@ elif res.speed:
             r = requests.get(i, timeout=timeout)
             stop_time = time.time()
             full_time = stop_time - start
-            print('Total time: ' + str(round(full_time, 2)) + ' sec.')
+            print('Loading time: ' + str(round(full_time, 2)) + ' sec.')
             print('*********' + '\n')
         except requests.exceptions.ConnectTimeout:
             print('Connect Timeout to: ' + str(i) + '\n ********* \n')
