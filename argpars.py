@@ -41,7 +41,9 @@ if res.all:
             print('\n' + 'Error code: ' + str(r.status_code) +
                   '\n\n **************************** \n')
         except requests.exceptions.ConnectTimeout:
-            print('Timeout')
+            print('Connect Timeout to: ' + str(i))
+        except requests.exceptions.MissingSchema:
+            print('Wrong URLs: ' + str(i) + '\n ********* \n')
         except requests.exceptions.ConnectionError as e:
             print('Connection error to: ' + str(i) + '\n')
 
@@ -56,7 +58,9 @@ elif res.error_code:
             print('\n' + 'Error code: ' + str(r.status_code) +
                   '\n\n ********* \n')
         except requests.exceptions.ConnectTimeout:
-            rint('Connect Timeout to: ' + str(i))
+            print('Connect Timeout to: ' + str(i))
+        except requests.exceptions.MissingSchema:
+            print('Wrong URL:' + str(i) + '\n ********* \n')
         except requests.exceptions.ConnectionError as e:
             print('Connection error to: ' + i + '\n ********* \n')
 
